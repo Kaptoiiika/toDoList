@@ -7,7 +7,7 @@ import { itemsRouter } from './items/items.controller'
 const app = express()
 app.use(bodyParser.json())
 
-const PORT = 4030
+const PORT = 4035
 
 app.use(itemsRouter)
 app.use(authRouter)
@@ -26,3 +26,10 @@ async function start() {
 }
 
 start()
+
+const path = require('path')
+app.use(express.static(path.join(__dirname, '..', 'client', 'build')))
+
+app.get('*', function (req, res) {
+  res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'))
+})
