@@ -19,7 +19,9 @@ export class AuthController {
       if (data) {
         return res.json(data)
       }
-      return res.status(401).json({})
+      return res
+        .status(401)
+        .json({ message: 'incorectrd password or username' })
     } catch (error) {
       res.status(500).json({ error })
     }

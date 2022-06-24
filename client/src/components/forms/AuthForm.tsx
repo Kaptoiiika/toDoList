@@ -1,6 +1,5 @@
 import { observer } from 'mobx-react-lite'
 import React from 'react'
-import { authStore } from '../../store/AuthStore'
 import { loginFormStore } from '../../store/UiStore/LoginFormStore'
 import Input from '../inputs/Input'
 
@@ -17,8 +16,7 @@ export const AuthForm = observer((props: Props) => {
   }
 
   const hundleTryLogin = () => {
-    if (!username || !password) return
-    authStore.login({ username, password })
+    loginFormStore.tryLogin()
   }
 
   return (
@@ -27,15 +25,17 @@ export const AuthForm = observer((props: Props) => {
         <form onSubmit={(e) => e.preventDefault()}>
           <Input
             onValueChange={(value) => loginFormStore.setUsername(value)}
+            defaultValue={username}
             type="username"
             placeholder="username"
             error={error?.username}
           />
           <Input
             onValueChange={(value) => loginFormStore.setPassword(value)}
+            defaultValue={password}
             type="password"
             placeholder="password"
-            error={error?.password}
+            error={error?.message || error?.password}
           />
           <button className="AppHeader-login__open" onClick={hundleTryLogin}>
             Sign IN

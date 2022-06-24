@@ -12,6 +12,7 @@ const App = observer(() => {
   React.useEffect(() => {
     if (!items) itemStore.getItems()
   }, [])
+
   return (
     <div className="App">
       <AppHeader />

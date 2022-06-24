@@ -1,6 +1,5 @@
 import { makeAutoObservable } from 'mobx'
 import { CreateItemDTO } from '../dto/CreateItem.dto'
-import { LoginDTO } from '../dto/Login.dto'
 import { Item } from '../models/Item.model'
 import { apiClient } from '../service/ApiClient'
 

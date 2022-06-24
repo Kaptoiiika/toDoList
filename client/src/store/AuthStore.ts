@@ -34,7 +34,7 @@ export class AuthStore {
 
   async init(token:string) {
     try {
-      const { data } = await apiClient.get('/auth', {
+      await apiClient.get('/auth', {
         headers: { Authorization: `Bearer ${token}` },
       })
       apiClient.defaults.headers.common['Authorization'] = `Bearer ${token}`

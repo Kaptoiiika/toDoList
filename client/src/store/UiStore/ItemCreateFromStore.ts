@@ -1,5 +1,6 @@
-import { autorun, makeAutoObservable, reaction } from 'mobx'
+import { makeAutoObservable, reaction } from 'mobx'
 import { CreateItemDTO } from '../../dto/CreateItem.dto'
+import { parseBackendError } from '../../utils/parseBackendError'
 import { isEmail, isNotEmpty } from '../../utils/validator'
 import { itemStore, ItemStore } from '../ItemsStore'
 
@@ -10,7 +11,10 @@ class ItemCreateFormStore {
     description: '',
   }
   counter = 0
-  error: CreateItemDTO | undefined
+  error = {
+    ...this.item,
+    message: '',
+  }
 
   constructor(private itemStore: ItemStore) {
     makeAutoObservable(this)
@@ -34,16 +38,30 @@ class ItemCreateFormStore {
     this.item.description = description
   }
 
-  createItem() {
+  async tryCreateItem() {
     this.counter++
     this.checkError()
     if (this.error?.email || this.error?.username || this.error?.description)
       return
-    this.itemStore.createItem(this.item)
+    try {
+      await this.itemStore.createItem(this.item)
+      this.clearForm()
+    } catch (error) {
+      this.error = parseBackendError(error)
+    }
+  }
+
+  clearForm() {
+    this.item = {
+      email: '',
+      username: '',
+      description: '',
+    }
+    this.counter = 0
   }
 
   checkError() {
-    const error = { username: '', email: '', description: '' }
+    const error = { username: '', email: '', description: '', message: '' }
 
     error.email = isEmail(this.item.email)
     error.username = isNotEmpty(this.item.username)

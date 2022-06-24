@@ -5,10 +5,17 @@ type Props = {
   error?: string
   placeholder?: string
   onValueChange?: (value: string) => any
+  defaultValue?: string
 }
 
 const Input = (props: Props) => {
-  const { type = 'text', onValueChange, error, placeholder } = props
+  const {
+    type = 'text',
+    onValueChange,
+    error,
+    placeholder,
+    defaultValue,
+  } = props
   return (
     <div>
       <input
@@ -17,6 +24,7 @@ const Input = (props: Props) => {
           if (onValueChange) onValueChange(e.target.value)
         }}
         placeholder={placeholder}
+        defaultValue={defaultValue}
       />
       {error && <p>{error}</p>}
     </div>

@@ -7,7 +7,7 @@ import { itemsRouter } from './items/items.controller'
 const app = express()
 app.use(bodyParser.json())
 
-const PORT = 4035
+const PORT = 4030
 
 app.use(itemsRouter)
 app.use(authRouter)

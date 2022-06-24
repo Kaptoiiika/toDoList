@@ -11,7 +11,7 @@ export const ItemAddForm = observer((props: Props) => {
   const error = itemCreateFormStore.error
 
   const hundleAddTodo = () => {
-    itemCreateFormStore.createItem()
+    itemCreateFormStore.tryCreateItem()
   }
 
   return (
@@ -23,18 +23,21 @@ export const ItemAddForm = observer((props: Props) => {
       >
         <Input
           onValueChange={(string) => itemCreateFormStore.setEmail(string)}
+          defaultValue={newItem.email}
           placeholder="email"
           type="email"
           error={error?.email}
         />
         <Input
           onValueChange={(string) => itemCreateFormStore.setUsername(string)}
+          defaultValue={newItem.username}
           placeholder="username"
           type="username"
           error={error?.username}
         />
         <Input
           onValueChange={(string) => itemCreateFormStore.setDescription(string)}
+          defaultValue={newItem.description}
           placeholder="text"
           type="text"
           error={error?.description}
