@@ -15,7 +15,7 @@ export class ItemCreateFormStore {
     ...this.item,
     message: '',
   }
-
+  successCreated = false
   constructor(private itemStore: ItemStore) {
     makeAutoObservable(this)
     reaction(
@@ -46,6 +46,10 @@ export class ItemCreateFormStore {
     try {
       await this.itemStore.createItem(this.item)
       this.clearForm()
+      this.successCreated = true
+      setTimeout(() => {
+        this.successCreated = false
+      }, 5000)
     } catch (error) {
       this.error = parseBackendError(error)
     }

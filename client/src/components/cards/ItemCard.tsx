@@ -3,7 +3,6 @@ import {
   Card,
   CardContent,
   IconButton,
-  TextField,
   Tooltip,
   Typography,
 } from '@mui/material'
@@ -39,7 +38,6 @@ export const ItemCard = observer((props: Props) => {
 
   const hundleSave = async () => {
     await itemUpdateFormStore.saveItem()
-
   }
 
   if (editItem?.id === item.id) {
@@ -76,7 +74,9 @@ export const ItemCard = observer((props: Props) => {
               errorText={error?.description}
             />
             <Input
-              onValueChange={(string) => itemUpdateFormStore.setStatus(Number(string))}
+              onValueChange={(string) =>
+                itemUpdateFormStore.setStatus(Number(string))
+              }
               type="number"
               placeholder="status"
               variant="standard"

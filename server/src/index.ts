@@ -15,7 +15,7 @@ app.use(authRouter)
 async function start() {
   try {
     await sequelize.authenticate()
-    // await sequelize.sync({ force: true })
+    await sequelize.sync()
     app.listen(PORT, () => {
       console.log(`Server started on port: ${PORT}...`)
     })
@@ -28,8 +28,10 @@ async function start() {
 start()
 
 const path = require('path')
-app.use(express.static(path.join(__dirname, '..', 'client', 'build')))
+app.use(express.static(path.join(__dirname, '..', '..', 'client', 'build')))
 
 app.get('*', function (req, res) {
-  res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'))
+  res.sendFile(
+    path.join(__dirname, '..', '..', 'client', 'build', 'index.html')
+  )
 })

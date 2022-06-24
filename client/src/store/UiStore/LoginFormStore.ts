@@ -51,6 +51,7 @@ class LoginFormStore {
 
   clearForm() {
     this.counter = 0
+    this.loginOpen = false
     this.username = ''
     this.password = ''
   }

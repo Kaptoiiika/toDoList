@@ -7,7 +7,7 @@ export class CreateItemsDTO {
 }
 
 export const CreateItemsValidator = [
-  body('email').isEmail(),
+  body('email').isEmail().withMessage('email is not correct'),
   body('username').isLength({ min: 4, max: 255 }).withMessage('minimum 4 char'),
   body('description').isLength({ min: 1, max: 255 }),
 ]

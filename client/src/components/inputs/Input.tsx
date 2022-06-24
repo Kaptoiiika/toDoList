@@ -10,6 +10,7 @@ type Props = {
   defaultValue?: string | number
   className?: string
   variant?: 'standard' | 'filled' | 'outlined'
+  value?: string
 }
 
 const Input = (props: Props) => {
@@ -22,6 +23,7 @@ const Input = (props: Props) => {
     className,
     errorText,
     variant,
+    value,
   } = props
 
   return (
@@ -31,6 +33,7 @@ const Input = (props: Props) => {
         onChange={(e) => {
           if (onValueChange) onValueChange(e.target.value)
         }}
+        value={value}
         label={placeholder}
         placeholder={placeholder}
         defaultValue={defaultValue}

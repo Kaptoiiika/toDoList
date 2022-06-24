@@ -13,6 +13,7 @@ export class ItemStore {
   }
 
   async getItems() {
+    if (this.loading) return
     this.loading = true
     const params = new URLSearchParams(document.location.search)
 

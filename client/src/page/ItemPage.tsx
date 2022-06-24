@@ -87,14 +87,20 @@ const ItemPage = observer((props: Props) => {
             <CircularProgress />
           </div>
         )}
-        {items && items.map((item) => <ItemCard key={item.id} item={item} />)}
+        {items?.length ? (
+          items.map((item) => <ItemCard key={item.id} item={item} />)
+        ) : (
+          <h4>No todo today 👍</h4>
+        )}
       </div>
       <div className="paginator">
-        <Pagination
-          count={totalPage}
-          page={currentPage}
-          onChange={handleChangePage}
-        />
+        {totalPage >= 2 && (
+          <Pagination
+            count={totalPage}
+            page={currentPage}
+            onChange={handleChangePage}
+          />
+        )}
       </div>
     </div>
   )

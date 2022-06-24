@@ -10,6 +10,8 @@ export const ItemAddForm = observer((props: Props) => {
   const newItem = itemCreateFormStore.item
   const error = itemCreateFormStore.error
 
+  const successCreated = itemCreateFormStore.successCreated
+
   const hundleAddTodo = () => {
     itemCreateFormStore.tryCreateItem()
   }
@@ -17,17 +19,16 @@ export const ItemAddForm = observer((props: Props) => {
   return (
     <div className="itemform">
       <div className="itemform-userinfo">
-
         <Input
           onValueChange={(string) => itemCreateFormStore.setEmail(string)}
-          defaultValue={newItem.email}
+          value={newItem.email}
           placeholder="email"
           type="email"
           errorText={error?.email}
         />
         <Input
           onValueChange={(string) => itemCreateFormStore.setUsername(string)}
-          defaultValue={newItem.username}
+          value={newItem.username}
           placeholder="username"
           type="username"
           errorText={error?.username}
@@ -36,15 +37,20 @@ export const ItemAddForm = observer((props: Props) => {
 
       <Input
         onValueChange={(string) => itemCreateFormStore.setDescription(string)}
-        defaultValue={newItem.description}
+        value={newItem.description}
         placeholder="text"
         type="text"
         errorText={error?.description}
       />
-
-      <Button variant="contained" onClick={hundleAddTodo}>
-        add todo
-      </Button>
+      {successCreated ? (
+        <Button variant="contained" color="success" onClick={hundleAddTodo}>
+          success
+        </Button>
+      ) : (
+        <Button variant="contained" onClick={hundleAddTodo}>
+          add todo
+        </Button>
+      )}
     </div>
   )
 })
