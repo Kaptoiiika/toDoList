@@ -1,0 +1,14 @@
+.itemform {
+  margin: 2em;
+
+  &-userinfo {
+    display: flex;
+    justify-content: center;
+    & > * {
+      width: 100%;
+    }
+    & > :first-child {
+      margin: 0 1em 0 0;
+    }
+  }
+}

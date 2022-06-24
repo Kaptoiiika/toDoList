@@ -12,5 +12,5 @@ export const UpdateItemsValidator = [
   body('email').isEmail().optional(),
   body('username').isLength({ min: 4, max: 255 }).optional(),
   body('description').isLength({ min: 1, max: 255 }).optional(),
-  body('status').isNumeric().optional(),
+  body('status').optional(),
 ]

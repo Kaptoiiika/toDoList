@@ -6,4 +6,10 @@ export type Item = {
   username: string
 
   description: string
+
+  status: number
+
+  createdAt: string
+
+  updatedAt: string
 }

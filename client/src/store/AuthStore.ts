@@ -10,6 +10,14 @@ export class AuthStore {
     makeAutoObservable(this)
     const token = localStorage.getItem('token')
     if (token) this.init(token)
+    window.addEventListener(
+      'storage',
+      function () {
+        const token = localStorage.getItem('token')
+        apiClient.defaults.headers.common['Authorization'] = `Bearer ${token}`
+      },
+      false
+    )
   }
 
   async login(dto: LoginDTO) {
@@ -32,7 +40,7 @@ export class AuthStore {
     apiClient.defaults.headers.common['Authorization'] = ''
   }
 
-  async init(token:string) {
+  async init(token: string) {
     try {
       await apiClient.get('/auth', {
         headers: { Authorization: `Bearer ${token}` },

@@ -1,0 +1,20 @@
+.itemCard {
+  position: relative;
+  width: 300px;
+  text-align: left;
+  &-edited {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  &-editButton {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  &-edit {
+    & > * {
+      margin: 0.5em;
+    }
+  }
+}

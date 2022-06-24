@@ -1,26 +1,19 @@
 import { observer } from 'mobx-react-lite'
 import React from 'react'
+import { BrowserRouter } from 'react-router-dom'
 import './App.scss'
 import { AppHeader } from './components/AppHeader/AppHeader'
-import { ItemAddForm } from './components/forms/ItemAddForm'
-import { ItemCard } from './components/cards/ItemCard'
-import { itemStore } from './store/ItemsStore'
+import useRoutes from './router'
 
 const App = observer(() => {
-  const items = itemStore.items
-
-  React.useEffect(() => {
-    if (!items) itemStore.getItems()
-  }, [])
+  const routes = useRoutes()
 
   return (
     <div className="App">
-      <AppHeader />
-      TODO:
-      <ItemAddForm />
-      <div className="items">
-        {items && items.map((item) => <ItemCard item={item} />)}
-      </div>
+      <BrowserRouter>
+        <AppHeader />
+        {routes}
+      </BrowserRouter>
     </div>
   )
 })

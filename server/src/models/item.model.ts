@@ -22,5 +22,6 @@ export const Items = sequelize.define('Items', {
 
   status: {
     type: DataTypes.INTEGER,
+    defaultValue: 0,
   },
 })

@@ -1,7 +1,9 @@
 import React from 'react'
 import { observer } from 'mobx-react-lite'
 import { authStore } from '../../store/AuthStore'
-import { AuthForm } from '../forms/AuthForm'
+import { Toolbar, Typography, Button, AppBar } from '@mui/material'
+import './AppHeader.scss'
+import { AuthForm } from '../forms/AuthForm/AuthForm'
 
 type Props = {}
 
@@ -13,13 +15,28 @@ export const AppHeader = observer((props: Props) => {
   }
   return (
     <div className="AppHeader">
-      {isAuth ? (
-        <button className="AppHeader-logout" onClick={hundleLogout}>
-          logout
-        </button>
-      ) : (
-        <AuthForm />
-      )}
+      <AppBar position="static">
+        <Toolbar>
+          <div className="AppHeader-content">
+            <Typography variant="h5" noWrap>
+              Todo list
+            </Typography>
+
+            {isAuth ? (
+              <Button
+                color="success"
+                variant="contained"
+                className="AppHeader-logout"
+                onClick={hundleLogout}
+              >
+                logout
+              </Button>
+            ) : (
+              <AuthForm />
+            )}
+          </div>
+        </Toolbar>
+      </AppBar>
     </div>
   )
 })
